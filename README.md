@@ -29,3 +29,36 @@ El Mundo del día en el que lo abre, además se pueden añadir noticias a mano 
 
 ## Arquitectura
 
+
+![Screenshot from 2024-02-25 20-30-16](https://github.com/RafaelOrti/scraping_muchosol/assets/45425367/e51eaf6a-9692-4186-8537-28cc723b7b6a)
+
+
+![Screenshot from 2024-02-25 20-46-24](https://github.com/RafaelOrti/scraping_muchosol/assets/45425367/15a09cf1-fcf4-46ad-ae21-a3426b6b184c)
+
+
+
+    Capa de Presentación o Interfaz de Usuario (UI):
+        Controllers: Manejan las solicitudes HTTP, interactúan con los servicios y devuelven respuestas HTTP.
+        Routes: Define las rutas y los controladores asociados a cada ruta.
+        
+    Capa de Lógica de Aplicación (BLL - Business Logic Layer):
+        Services: Contienen la lógica de negocio de la aplicación. Interactúan con los controladores y los modelos para realizar operaciones específicas.
+        Exceptions: Manejan las excepciones lanzadas durante la ejecución de la aplicación y las transforman en respuestas HTTP adecuadas.
+
+    Capa de Acceso a Datos:
+        Models: Representan la estructura de los datos y las operaciones relacionadas con la base de datos.
+        Database: Contiene la configuración y las funciones para interactuar con la base de datos.
+
+    Capa de Infraestructura:
+        Middlewares: Funciones que se ejecutan antes o después de las solicitudes HTTP para realizar tareas como autenticación, registro de solicitudes, etc.
+        Utils: Contiene funciones y utilidades reutilizables en toda la aplicación, como funciones de ayuda, validación de datos, etc.
+        Scripts: Scripts auxiliares o de utilidad que no están directamente relacionados con la lógica de la aplicación, como scripts de migración de datos, de inicialización, etc.
+        Config: Configuraciones de la aplicación, como configuraciones de entorno, configuraciones de base de datos, etc.
+
+    Capa de Gestión de Estado:
+        Interfaces: Definiciones de tipos de datos y estructuras de datos utilizadas en toda la aplicación.
+        DTOS (Data Transfer Objects): Objetos utilizados para transferir datos entre las diferentes capas de la aplicación.
+
+    Capa de Servidor y Aplicación:
+        Server: Configuración del servidor web y la aplicación Express.
+        App: Punto de entrada de la aplicación donde se configuran y montan todas las partes de la aplicación.
