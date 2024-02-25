@@ -1,7 +1,6 @@
 import { model, Schema, Document, Model } from 'mongoose';
 import { event } from '../interfaces/event';
 
-// Define a new interface that extends both event and Document
 interface eventDocument extends event, Document {}
 
 class eventModelWrapper {
@@ -86,7 +85,8 @@ class eventModelWrapper {
    * @returns A Promise that resolves to an array of event documents.
    */
   public async findByDate(startOfDay: Date, endOfDay: Date, skip: number, limit: number): Promise<eventDocument[]> {
-    return this.eventModel.find({ createdAt: { $gte: startOfDay, $lte: endOfDay } })
+    return this.eventModel
+      .find({ createdAt: { $gte: startOfDay, $lte: endOfDay } })
       .skip(skip)
       .limit(limit)
       .sort({ createdAt: -1 })

@@ -6,7 +6,7 @@ export class eventController {
   private Eventservice: Eventservice;
 
   constructor() {
-    this.Eventservice = new Eventservice(); // Inicializar el servicio en el constructor
+    this.Eventservice = new Eventservice();
   }
 
   /**
@@ -43,7 +43,7 @@ export class eventController {
 
       const skip: number = parseInt(req.query.skip as string, 10);
       const limit: number = parseInt(req.query.limit as string, 10);
-      const filteredByDateEventsData: event[] = await this.Eventservice.findEventsByDate(startOfDay, endOfDay, skip, limit); // Cambiado de id a date
+      const filteredByDateEventsData: event[] = await this.Eventservice.findEventsByDate(startOfDay, endOfDay, skip, limit);
       res.status(200).json({ data: filteredByDateEventsData, message: 'filteredByDate' });
     } catch (error) {
       next(error);

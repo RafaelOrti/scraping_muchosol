@@ -3,14 +3,13 @@ import moment from 'moment';
 import jsdom from 'jsdom';
 import eventModel from '../models/event';
 import { logger } from '../utils/logger';
-// Definir tipos
+
 interface NewsData {
   heading: string;
   subHeading: string;
   link: string;
 }
 
-// Clase base para la extracción de datos web
 class Web {
   private newsData: NewsData[] = [];
 
@@ -23,7 +22,6 @@ class Web {
     this.event = new eventModel();
   }
 
-  // Método para extraer el contenido de una URL utilizando Puppeteer
   async extract(url: string): Promise<string> {
     try {
       const message = `Iniciando extracción de la URL: ${url}`;
@@ -47,36 +45,33 @@ class Web {
     }
   }
 
-  // Método para eliminar estilos del cuerpo del HTML
   private removeStyles(body: string): string {
     const regex = /<style\b[^>]*>[\s\S]*?<\/style>/gi;
     return body.replace(regex, '');
   }
 
-  // Método para limpiar el título de la noticia
   protected cleanHeading(heading: string): string {
     return heading.replace(/\b.*?\|\s/g, '').trim();
   }
 
-  // Método para limpiar el subtítulo de la noticia
   protected cleanSubHeading(subHeading: string): string {
     return subHeading.replace(/(<([^>]+)>)/gi, '');
   }
 
-  // Método para agregar una noticia al conjunto de datos
   protected addNews(heading: string, subHeading: string, link: string): void {
     this.newsData.push({ heading, subHeading, link });
   }
 
-  // Método para guardar los datos extraídos en la base de datos
   async saveData(): Promise<boolean> {
     try {
       const date = moment().format('YYYY-MM-DD');
-      await this.event.deleteMany({ createdAt: {
-        $gte: moment().startOf('day').toDate(),
-        $lt: moment().endOf('day').toDate(),
-      },
-      provider: this.provider, });
+      await this.event.deleteMany({
+        createdAt: {
+          $gte: moment().startOf('day').toDate(),
+          $lt: moment().endOf('day').toDate(),
+        },
+        provider: this.provider,
+      });
 
       const promises = this.newsData.map(news => {
         const eventData = {
@@ -98,7 +93,6 @@ class Web {
   }
 }
 
-// Clase para extraer datos del sitio web "El Mundo"
 class ElMundo extends Web {
   private readonly url: string = 'https://www.elmundo.es/';
 
@@ -106,7 +100,6 @@ class ElMundo extends Web {
     super('mundo');
   }
 
-  // Método para extraer noticias de El Mundo
   async newsExtract(url: string): Promise<boolean> {
     try {
       const body = await this.extract(url);
@@ -125,7 +118,6 @@ class ElMundo extends Web {
     }
   }
 
-  // Método para extraer datos de El Mundo
   async dataExtract(): Promise<boolean> {
     try {
       const body = await this.extract(this.url);
@@ -145,7 +137,6 @@ class ElMundo extends Web {
   }
 }
 
-// Clase para extraer datos del sitio web "El País"
 class ElPais extends Web {
   private readonly url: string = 'https://elpais.com/actualidad/';
 
@@ -153,7 +144,6 @@ class ElPais extends Web {
     super('pais');
   }
 
-  // Método para extraer noticias de El País
   async newsExtract(url: string): Promise<boolean> {
     try {
       const body = await this.extract(url);
@@ -172,7 +162,6 @@ class ElPais extends Web {
     }
   }
 
-  // Método para extraer datos de El País
   async dataExtract(): Promise<boolean> {
     try {
       const body = await this.extract(this.url);
@@ -194,7 +183,6 @@ class ElPais extends Web {
   }
 }
 
-// Factory Method Pattern
 class WebFactory {
   static createWeb(provider) {
     switch (provider) {
@@ -208,7 +196,6 @@ class WebFactory {
   }
 }
 
-// Función para iniciar el proceso de extracción y almacenamiento de datos
 const start = async (): Promise<void> => {
   logger.info('Iniciando scraping...');
 
