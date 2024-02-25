@@ -1,0 +1,117 @@
+swagger: '2.0'
+info:
+  title: Events API
+  version: 1.0.0
+paths:
+  /events:
+    get:
+      tags:
+        - Events
+      summary: Find all events
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+    post:
+      tags:
+        - Events
+      summary: Add event
+      parameters:
+        - name: body
+          in: body
+          description: event Data
+          required: true
+          schema:
+            $ref: '#/definitions/Events'
+      responses:
+        201:
+          description: 'Created'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+  /events/{date}:
+    get:
+      tags:
+        - Events
+      summary: Find event by date
+      parameters:
+        - name: date
+          in: path
+          description: event Date
+          required: true
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+  /events/{id}:
+    put:
+      tags:
+        - Events
+      summary: Update event by id
+      parameters:
+        - name: id
+          in: path
+          description: event Id
+          required: true
+        - name: body
+          in: body
+          description: event Data
+          required: true
+          schema:
+            $ref: '#/definitions/Events'
+      responses:
+        200:
+          description: 'OK'
+        400:
+          description: 'Bad Request'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+    delete:
+      tags:
+        - Events
+      summary: Delete event by id
+      parameters:
+        - name: id
+          in: path
+          description: event Id
+          required: true
+      responses:
+        200:
+          description: 'OK'
+        409:
+          description: 'Conflict'
+        500:
+          description: 'Server Error'
+definitions:
+  Events:
+    type: object
+    required:
+      - heading
+      - date
+      - provider
+    properties:
+      heading:
+        type: string
+        description: event heading
+      subHeading:
+        type: string
+        description: event subHeading
+      link:
+        type: string
+        description: event link
+      date:
+        type: string
+        description: event date
+      provider:
+        type: string
+        description: event provider
+schemes:
+  - https
+  - http
