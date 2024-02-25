@@ -1,49 +1,29 @@
-tags:
-- name: Events
-  description: Events API
-
+swagger: '2.0'
+info:
+  title: Events API
+  version: 1.0.0
 paths:
-# [GET] Events
-  /Events:
+  /events:
     get:
       tags:
-      - Events
-      summary: Find all Events
+        - Events
+      summary: Find all events
       responses:
         200:
           description: 'OK'
         500:
           description: 'Server Error'
-
-# [GET] Events/date
-  /Events/{date}:
-    get:
-      tags:
-      - Events
-      summary: Find event by date
-      parameters:
-      - name: date
-        in: path
-        description: event Date
-        required: true
-      responses:
-        200:
-          description: 'OK'
-        500:
-          description: 'Server Error'
-
-# [POST] Events
     post:
       tags:
-      - Events
+        - Events
       summary: Add event
       parameters:
-      - name: body
-        in: body
-        description: event Data
-        required: true
-        schema:
-          $ref: '#/definitions/Events'
+        - name: body
+          in: body
+          description: event Data
+          required: true
+          schema:
+            $ref: '#/definitions/Events'
       responses:
         201:
           description: 'Created'
@@ -53,23 +33,37 @@ paths:
           description: 'Conflict'
         500:
           description: 'Server Error'
-
-# [PUT] Events/id
+  /events/{date}:
+    get:
+      tags:
+        - Events
+      summary: Find event by date
+      parameters:
+        - name: date
+          in: path
+          description: event Date
+          required: true
+      responses:
+        200:
+          description: 'OK'
+        500:
+          description: 'Server Error'
+  /events/{id}:
     put:
       tags:
-      - Events
+        - Events
       summary: Update event by id
       parameters:
-      - name: id
-        in: path
-        description: event Id
-        required: true
-      - name: body
-        in: body
-        description: event Data
-        required: true
-        schema:
-          $ref: '#/definitions/Events'
+        - name: id
+          in: path
+          description: event Id
+          required: true
+        - name: body
+          in: body
+          description: event Data
+          required: true
+          schema:
+            $ref: '#/definitions/Events'
       responses:
         200:
           description: 'OK'
@@ -79,17 +73,15 @@ paths:
           description: 'Conflict'
         500:
           description: 'Server Error'
-
-# [DELETE] Events/id
     delete:
       tags:
-      - Events
+        - Events
       summary: Delete event by id
       parameters:
-      - name: id
-        in: path
-        description: event Id
-        required: true
+        - name: id
+          in: path
+          description: event Id
+          required: true
       responses:
         200:
           description: 'OK'
@@ -97,15 +89,13 @@ paths:
           description: 'Conflict'
         500:
           description: 'Server Error'
-
-# definitions
 definitions:
   Events:
     type: object
     required:
-        - heading
-        - date
-        - provider
+      - heading
+      - date
+      - provider
     properties:
       heading:
         type: string
@@ -122,7 +112,6 @@ definitions:
       provider:
         type: string
         description: event provider
-
 schemes:
- - https
- - http
+  - https
+  - http
