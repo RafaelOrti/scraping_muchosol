@@ -7,6 +7,7 @@ Cuando un usuario abre DailyTrends, se encuentra con las 5 noticias de portada d
 El Mundo del día en el que lo abre, además se pueden añadir noticias a mano desde el API.
 
 Se ha creado un workspace con todas las herramientas necesarias para trabaajr, en el siguiente repo: https://github.com/RafaelOrti/scrapping_muchosol_workspace
+
 POR FALTA DE TIEMPO, NO SE HA TERMINADO DE IMPLEMENTAR EL WORKSPACE, TESTING Y SUBIDA AWS ELASTICSEARCH BEANSTALK
 
 ## Instrucciones
