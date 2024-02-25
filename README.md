@@ -36,6 +36,7 @@ El Mundo del día en el que lo abre, además se pueden añadir noticias a mano 
 ![Screenshot from 2024-02-25 20-46-24](https://github.com/RafaelOrti/scraping_muchosol/assets/45425367/15a09cf1-fcf4-46ad-ae21-a3426b6b184c)
 
 
+### Capas de la aplicación
 
     Capa de Presentación o Interfaz de Usuario (UI):
         Controllers: Manejan las solicitudes HTTP, interactúan con los servicios y devuelven respuestas HTTP.
