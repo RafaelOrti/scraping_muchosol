@@ -1,4 +1,4 @@
-export interface Feed {
+export interface event {
   heading: string;
   subHeading?: string;
   link?: string;
