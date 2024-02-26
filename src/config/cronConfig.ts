@@ -2,8 +2,10 @@ import { CronJob } from 'cron';
 import scrapingScript from '../scripts/scraping';
 import { logger } from '../utils/logger';
 
+let cronJobInstance: CronJob;
+
 export const startCronJob = () =>
-  new CronJob(
+  (cronJobInstance = new CronJob(
     '* * * * *',
     () => {
       try {
@@ -16,4 +18,11 @@ export const startCronJob = () =>
     null,
     true,
     'Europe/Madrid',
-  );
+  ));
+
+export const stopCronJob = () => {
+  if (cronJobInstance) {
+    cronJobInstance.stop();
+    logger.info('CronJob stopped');
+  }
+};

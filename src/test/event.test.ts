@@ -2,6 +2,7 @@ import request, { Response } from 'supertest';
 import { App } from '../app';
 import { EventRoute } from '../routes/event';
 import mongoose from 'mongoose';
+import { startCronJob, stopCronJob } from '../config/cronConfig';
 
 let createdEventId: string;
 
@@ -9,6 +10,7 @@ const app = new App().getServer();
 const eventsRoute = new EventRoute();
 
 afterAll(async () => {
+  stopCronJob();
   await new Promise<void>(resolve => setTimeout(() => resolve(), 500));
   await mongoose.disconnect();
 });
