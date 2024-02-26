@@ -2,7 +2,7 @@ import request, { Response } from 'supertest';
 import { App } from '../app';
 import { EventRoute } from '../routes/event';
 import mongoose from 'mongoose';
-import { startCronJob, stopCronJob } from '../config/cronConfig';
+import { stopCronJob } from '../config/cronConfig';
 
 let createdEventId: string;
 
