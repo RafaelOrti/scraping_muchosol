@@ -1,14 +1,14 @@
 import { model, Schema, Document, Model } from 'mongoose';
-import { event } from '../interfaces/event';
+import { Event } from '../interfaces/event';
 
-interface eventDocument extends event, Document {}
+interface EventDocument extends Event, Document {}
 
-class eventModelWrapper {
-  private eventModel: Model<eventDocument>;
+class EventModelWrapper {
+  private eventModel: Model<EventDocument>;
 
   constructor() {
     try {
-      this.eventModel = model<eventDocument>('event');
+      this.eventModel = model<EventDocument>('Event');
     } catch {
       /**
        * Defines the schema for a event item.
@@ -53,7 +53,7 @@ class eventModelWrapper {
         },
         { timestamps: true, strict: false },
       );
-      this.eventModel = model<eventDocument>('event', Eventschema);
+      this.eventModel = model<EventDocument>('Event', Eventschema);
     }
   }
 
@@ -62,7 +62,7 @@ class eventModelWrapper {
    * @param event - The event object to be created.
    * @returns A Promise that resolves to the created event document.
    */
-  public async create(event: event): Promise<eventDocument> {
+  public async create(event: Event): Promise<EventDocument> {
     const createdevent = new this.eventModel(event);
     return createdevent.save();
   }
@@ -73,7 +73,7 @@ class eventModelWrapper {
    * @param limit - The maximum number of documents to return.
    * @returns A Promise that resolves to an array of event documents.
    */
-  public async findAll(skip: number, limit: number): Promise<eventDocument[]> {
+  public async findAll(skip: number, limit: number): Promise<EventDocument[]> {
     return this.eventModel.find().skip(skip).limit(limit).sort({ createdAt: -1 }).exec();
   }
 
@@ -84,7 +84,7 @@ class eventModelWrapper {
    * @param limit - The maximum number of documents to return.
    * @returns A Promise that resolves to an array of event documents.
    */
-  public async findByDate(startOfDay: Date, endOfDay: Date, skip: number, limit: number): Promise<eventDocument[]> {
+  public async findByDate(startOfDay: Date, endOfDay: Date, skip: number, limit: number): Promise<EventDocument[]> {
     return this.eventModel
       .find({ createdAt: { $gte: startOfDay, $lte: endOfDay } })
       .skip(skip)
@@ -99,7 +99,7 @@ class eventModelWrapper {
    * @param event - The updated event object.
    * @returns A Promise that resolves to the updated event document.
    */
-  public async updateById(id: string, event: event): Promise<eventDocument | null> {
+  public async updateById(id: string, event: Event): Promise<EventDocument | null> {
     return this.eventModel.findByIdAndUpdate(id, event, { new: true }).exec();
   }
 
@@ -108,7 +108,7 @@ class eventModelWrapper {
    * @param id - The ID of the event document to delete.
    * @returns A Promise that resolves to the deleted event document.
    */
-  public async deleteById(id: string): Promise<eventDocument | null> {
+  public async deleteById(id: string): Promise<EventDocument | null> {
     return this.eventModel.findByIdAndDelete(id).exec();
   }
 
@@ -122,4 +122,4 @@ class eventModelWrapper {
   }
 }
 
-export default eventModelWrapper;
+export default EventModelWrapper;

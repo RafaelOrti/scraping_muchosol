@@ -1,4 +1,4 @@
-export interface event {
+export interface Event {
   heading: string;
   subHeading?: string;
   link?: string;

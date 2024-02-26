@@ -9,6 +9,7 @@ import { NODE_ENV, PORT, LOG_FORMAT } from './config';
 import { logger, stream } from './utils/logger';
 import { EventRoute } from './routes/event';
 import { swaggerSpecs } from './config/swaggerConfig';
+import { startCronJob } from './config/cronConfig';
 
 export class App {
   public app: Application;
@@ -23,6 +24,7 @@ export class App {
     this.connectToDatabase();
     this.configureMiddlewares();
     this.configureRoutes();
+    this.startCronJob();
   }
 
   public listen() {
@@ -57,5 +59,9 @@ export class App {
   private configureRoutes(): void {
     const eventRoute = new EventRoute();
     this.app.use('/', eventRoute.router);
+  }
+
+  private startCronJob(): void {
+    startCronJob();
   }
 }
