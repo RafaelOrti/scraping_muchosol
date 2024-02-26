@@ -8,7 +8,7 @@ El Mundo del día en el que lo abre, además se pueden añadir noticias a mano 
 
 Se ha creado un workspace con todas las herramientas necesarias para trabaajr, en el siguiente repo: https://github.com/RafaelOrti/scrapping_muchosol_workspace
 
-POR FALTA DE TIEMPO, NO SE HA TERMINADO DE IMPLEMENTAR EL WORKSPACE,RPC,TESTING Y SUBIDA AWS ELASTICSEARCH BEANSTALK
+POR FALTA DE TIEMPO, NO SE HA TERMINADO DE IMPLEMENTAR EL RPC, TESTING Y SUBIDA AWS ELASTICSEARCH BEANSTALK
 
 ## Instrucciones
 
