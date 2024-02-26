@@ -37,10 +37,10 @@ export class Eventservice {
    * @param eventData - The data for the new event.
    * @returns A promise that resolves to the created event.
    */
-  public async createevent(eventData: event): Promise<event> {
-    const createeventData: event = await this.event.create({ ...eventData });
+  public async createEvent(eventData: event): Promise<event> {
+    const createEventData: event = await this.event.create({ ...eventData });
 
-    return createeventData;
+    return createEventData;
   }
 
   /**
@@ -50,11 +50,11 @@ export class Eventservice {
    * @returns A promise that resolves to the updated event.
    * @throws HttpException if the event doesn't exist.
    */
-  public async updateevent(eventId: string, eventData: event): Promise<event> {
-    const updateeventById: event = await this.event.updateById(eventId, { ...eventData });
-    if (!updateeventById) throw new HttpException(409, "event doesn't exist");
+  public async updateEvent(eventId: string, eventData: event): Promise<event> {
+    const updateEventById: event = await this.event.updateById(eventId, { ...eventData });
+    if (!updateEventById) throw new HttpException(409, "event doesn't exist");
 
-    return updateeventById;
+    return updateEventById;
   }
 
   /**
@@ -63,10 +63,10 @@ export class Eventservice {
    * @returns A promise that resolves to the deleted event.
    * @throws HttpException if the event doesn't exist.
    */
-  public async deleteevent(eventId: string): Promise<event> {
-    const deleteeventById: event = await this.event.deleteById(eventId);
-    if (!deleteeventById) throw new HttpException(409, "event doesn't exist");
+  public async deleteEvent(eventId: string): Promise<event> {
+    const deleteEventById: event = await this.event.deleteById(eventId);
+    if (!deleteEventById) throw new HttpException(409, "event doesn't exist");
 
-    return deleteeventById;
+    return deleteEventById;
   }
 }

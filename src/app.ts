@@ -12,9 +12,7 @@ import { swaggerSpecs } from './config/swaggerConfig';
 
 export class App {
   public app: Application;
-
   public env: string;
-
   public readonly port: string | number;
 
   constructor() {

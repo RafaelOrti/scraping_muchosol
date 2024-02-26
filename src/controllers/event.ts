@@ -58,12 +58,12 @@ export class eventController {
    * @param next - The next middleware function.
    * @returns A JSON object containing the created event and a message.
    */
-  public createevent = async (req: Request, res: Response, next: NextFunction) => {
+  public createEvent = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const eventData: event = req.body;
-      const createeventData: event = await this.Eventservice.createevent(eventData);
+      const createEventData: event = await this.Eventservice.createEvent(eventData);
 
-      res.status(201).json({ data: createeventData, message: 'created' });
+      res.status(201).json({ data: createEventData, message: 'created' });
     } catch (error) {
       next(error);
     }
@@ -77,13 +77,13 @@ export class eventController {
    * @param next - The next middleware function.
    * @returns A JSON object containing the updated event and a message.
    */
-  public updateevent = async (req: Request, res: Response, next: NextFunction) => {
+  public updateEvent = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const eventId: string = req.params.id;
       const eventData: event = req.body;
-      const updateeventData: event = await this.Eventservice.updateevent(eventId, eventData);
+      const updateEventData: event = await this.Eventservice.updateEvent(eventId, eventData);
 
-      res.status(200).json({ data: updateeventData, message: 'updated' });
+      res.status(200).json({ data: updateEventData, message: 'updated' });
     } catch (error) {
       next(error);
     }
@@ -97,12 +97,12 @@ export class eventController {
    * @param next - The next middleware function.
    * @returns A JSON object containing the deleted event and a message.
    */
-  public deleteevent = async (req: Request, res: Response, next: NextFunction) => {
+  public deleteEvent = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const eventId: string = req.params.id;
-      const deleteeventData: event = await this.Eventservice.deleteevent(eventId);
+      const deleteEventData: event = await this.Eventservice.deleteEvent(eventId);
 
-      res.status(200).json({ data: deleteeventData, message: 'deleted' });
+      res.status(200).json({ data: deleteEventData, message: 'deleted' });
     } catch (error) {
       next(error);
     }

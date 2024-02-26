@@ -3,7 +3,7 @@ import { IsString, IsOptional, IsNotEmpty, IsNumber } from 'class-validator';
 /**
  * Data transfer object for creating a new event.
  */
-export class CreateeventDto {
+export class createEventDto {
   /**
    * The heading of the event.
    */
