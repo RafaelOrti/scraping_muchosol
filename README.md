@@ -26,6 +26,7 @@ POR FALTA DE TIEMPO, NO SE HA TERMINADO DE IMPLEMENTAR EL WORKSPACE,RPC,TESTING 
 - `start`: Inicia la aplicación en modo production
 - `dev`: Inicia la aplicación en modo development
 - `build`: Compila el código TypeScript
+- `test`: Ejecuta las pruebas de testing
 - `lint`: Realiza la verificación de estilo con ESLint
 - `lint:fix`: Corrige automáticamente los problemas de estilo
 
