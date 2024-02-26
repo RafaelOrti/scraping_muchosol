@@ -6,7 +6,9 @@ portadas de los periódicos nú mero uno.
 Cuando un usuario abre DailyTrends, se encuentra con las 5 noticias de portada de El País y
 El Mundo del día en el que lo abre, además se pueden añadir noticias a mano desde el API.
 
+Se ha creado un workspace con todas las herramientas necesarias para trabaajr, en el siguiente repo: https://github.com/RafaelOrti/scrapping_muchosol_workspace
 
+POR FALTA DE TIEMPO, NO SE HA TERMINADO DE IMPLEMENTAR EL RPC, TESTING Y SUBIDA AWS ELASTICSEARCH BEANSTALK
 
 ## Instrucciones
 
@@ -24,6 +26,7 @@ El Mundo del día en el que lo abre, además se pueden añadir noticias a mano 
 - `start`: Inicia la aplicación en modo production
 - `dev`: Inicia la aplicación en modo development
 - `build`: Compila el código TypeScript
+- `test`: Ejecuta las pruebas de testing
 - `lint`: Realiza la verificación de estilo con ESLint
 - `lint:fix`: Corrige automáticamente los problemas de estilo
 

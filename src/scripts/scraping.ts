@@ -24,9 +24,9 @@ class Web {
 
   async extract(url: string): Promise<string> {
     try {
-      const message = `Iniciando extracción de la URL: ${url}`;
+      const message = `Initiating extraction from URL: ${url}`;
       logger.info(message);
-      const browser = await puppeteer.launch({ timeout: 60000 });
+      const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'], timeout: 60000 });
       const page = await browser.newPage();
       const response = await page.goto(url);
 
@@ -34,13 +34,13 @@ class Web {
         const body = await response.text();
         const bodyWithoutStyles = this.removeStyles(body);
         await browser.close();
-        logger.info('Extracción completada.');
+        logger.info('Extraction completed.');
         return bodyWithoutStyles;
       }
       await browser.close();
-      throw new Error('No se pudo cargar la URL.');
+      throw new Error('Could not load URL.');
     } catch (error) {
-      logger.error('Error durante la extracción:', error);
+      logger.error('Error during extraction:', error);
       throw error;
     }
   }
@@ -87,7 +87,7 @@ class Web {
       await Promise.all(promises);
       return true;
     } catch (error) {
-      logger.error('Error al guardar los datos:', error);
+      logger.error('Error while saving data:', error);
       throw error;
     }
   }
@@ -113,7 +113,7 @@ class ElMundo extends Web {
       this.addNews(heading, subHeading, url);
       return true;
     } catch (error) {
-      logger.error('Error durante la extracción de noticias:', error);
+      logger.error('Error during news extraction:', error);
       return false;
     }
   }
@@ -131,7 +131,7 @@ class ElMundo extends Web {
       await Promise.all(promises);
       return true;
     } catch (error) {
-      logger.error('Error durante la extracción de datos:', error);
+      logger.error('Error during data extraction:', error);
       return false;
     }
   }
@@ -157,7 +157,7 @@ class ElPais extends Web {
       this.addNews(heading, subHeading, url);
       return true;
     } catch (error) {
-      logger.error('Error durante la extracción de noticias:', error);
+      logger.error('Error during news extraction:', error);
       return false;
     }
   }
@@ -177,7 +177,7 @@ class ElPais extends Web {
       await Promise.all(promises);
       return true;
     } catch (error) {
-      logger.error('Error durante la extracción de datos:', error);
+      logger.error('Error during data extraction:', error);
       return false;
     }
   }
@@ -191,13 +191,13 @@ class WebFactory {
       case 'pais':
         return new ElPais();
       default:
-        throw new Error('Proveedor no válido');
+        throw new Error('Invalid provider');
     }
   }
 }
 
 const start = async (): Promise<void> => {
-  logger.info('Iniciando scraping...');
+  logger.info('Initiating scraping...');
 
   const elMundo = WebFactory.createWeb('mundo');
   await elMundo.dataExtract();
@@ -207,7 +207,7 @@ const start = async (): Promise<void> => {
   await elPais.dataExtract();
   await elPais.saveData();
 
-  logger.info('Extracción y almacenamiento completados.');
+  logger.info('Extraction and storage completed.');
 };
 
 export default {
