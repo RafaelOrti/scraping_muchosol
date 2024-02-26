@@ -1,35 +1,35 @@
 import { HttpException } from '../exceptions/HttpException';
-import { event } from '../interfaces/event';
-import eventModel from '../models/event';
+import { Event } from '../interfaces/event';
+import EventModel from '../models/event';
 
-export class Eventservice {
-  event: eventModel;
+export class EventService {
+  event: EventModel;
 
   constructor() {
-    this.event = new eventModel();
+    this.event = new EventModel();
   }
 
   /**
-   * Finds all Events with optional pagination.
-   * @param skip - The number of Events to skip.
-   * @param limit - The maximum number of Events to return.
-   * @returns A promise that resolves to an array of Events.
+   * Finds all events with optional pagination.
+   * @param skip - The number of events to skip.
+   * @param limit - The maximum number of events to return.
+   * @returns A promise that resolves to an array of events.
    */
-  public async findAllEvents(skip = 0, limit = 100): Promise<event[]> {
-    const Events: event[] = await this.event.findAll(skip, limit);
-    return Events;
+  public async findAllEvents(skip = 0, limit = 100): Promise<Event[]> {
+    const events: Event[] = await this.event.findAll(skip, limit);
+    return events;
   }
 
   /**
-   * Finds Events by date with optional pagination.
-   * @param date - The date to filter Events.
-   * @param skip - The number of Events to skip.
-   * @param limit - The maximum number of Events to return.
-   * @returns A promise that resolves to an array of Events.
+   * Finds events by date with optional pagination.
+   * @param date - The date to filter events.
+   * @param skip - The number of events to skip.
+   * @param limit - The maximum number of events to return.
+   * @returns A promise that resolves to an array of events.
    */
-  public async findEventsByDate(startOfDay: Date, endOfDay: Date, skip = 0, limit = 100): Promise<event[]> {
-    const Events: event[] = await this.event.findByDate(startOfDay, endOfDay, skip, limit);
-    return Events;
+  public async findEventsByDate(startOfDay: Date, endOfDay: Date, skip = 0, limit = 100): Promise<Event[]> {
+    const events: Event[] = await this.event.findByDate(startOfDay, endOfDay, skip, limit);
+    return events;
   }
 
   /**
@@ -37,10 +37,10 @@ export class Eventservice {
    * @param eventData - The data for the new event.
    * @returns A promise that resolves to the created event.
    */
-  public async createevent(eventData: event): Promise<event> {
-    const createeventData: event = await this.event.create({ ...eventData });
+  public async createEvent(eventData: Event): Promise<Event> {
+    const createEventData: Event = await this.event.create({ ...eventData });
 
-    return createeventData;
+    return createEventData;
   }
 
   /**
@@ -50,11 +50,11 @@ export class Eventservice {
    * @returns A promise that resolves to the updated event.
    * @throws HttpException if the event doesn't exist.
    */
-  public async updateevent(eventId: string, eventData: event): Promise<event> {
-    const updateeventById: event = await this.event.updateById(eventId, { ...eventData });
-    if (!updateeventById) throw new HttpException(409, "event doesn't exist");
+  public async updateEvent(eventId: string, eventData: Event): Promise<Event> {
+    const updateEventById: Event = await this.event.updateById(eventId, { ...eventData });
+    if (!updateEventById) throw new HttpException(409, "Event doesn't exist");
 
-    return updateeventById;
+    return updateEventById;
   }
 
   /**
@@ -63,10 +63,10 @@ export class Eventservice {
    * @returns A promise that resolves to the deleted event.
    * @throws HttpException if the event doesn't exist.
    */
-  public async deleteevent(eventId: string): Promise<event> {
-    const deleteeventById: event = await this.event.deleteById(eventId);
-    if (!deleteeventById) throw new HttpException(409, "event doesn't exist");
+  public async deleteEvent(eventId: string): Promise<Event> {
+    const deleteEventById: Event = await this.event.deleteById(eventId);
+    if (!deleteEventById) throw new HttpException(409, "event doesn't exist");
 
-    return deleteeventById;
+    return deleteEventById;
   }
 }
