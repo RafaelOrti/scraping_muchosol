@@ -32,7 +32,8 @@ POR FALTA DE TIEMPO, NO SE HA TERMINADO DE IMPLEMENTAR EL RPC, RABBITMQ, TESTING
 
 ## Arquitectura
 
-![Screenshot from 2024-02-28 18-38-43](https://github.com/RafaelOrti/scraping_muchosol/assets/45425367/e45596db-473f-403c-b60c-5d8f99519ed0)
+![Screenshot from 2024-02-28 18-39-51](https://github.com/RafaelOrti/scraping_muchosol/assets/45425367/cd930d34-3a90-45ce-9e2b-e72560375ca5)
+
 
 ![Screenshot from 2024-02-25 20-46-24](https://github.com/RafaelOrti/scraping_muchosol/assets/45425367/15a09cf1-fcf4-46ad-ae21-a3426b6b184c)
 
