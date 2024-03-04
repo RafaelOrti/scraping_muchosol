@@ -12,9 +12,9 @@ import { swaggerSpecs } from './config/swaggerConfig';
 import { startCronJob } from './config/cronConfig';
 
 export class App {
-  public app: Application;
-  public env: string;
-  public readonly port: string | number;
+  private readonly app: Application;
+  private readonly port: string | number;
+  private readonly env: string;
 
   constructor() {
     this.app = express();
@@ -27,7 +27,7 @@ export class App {
     this.startCronJob();
   }
 
-  public listen() {
+  public listen(): void {
     this.app.listen(this.port, () => {
       logger.info('=================================================');
       logger.info('=================================================');
@@ -38,11 +38,11 @@ export class App {
     });
   }
 
-  public getServer() {
+  public getServer(): Application {
     return this.app;
   }
 
-  private async connectToDatabase() {
+  private async connectToDatabase(): Promise<void> {
     await dbConnection();
   }
 

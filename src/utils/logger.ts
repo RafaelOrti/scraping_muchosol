@@ -44,14 +44,11 @@ const logger = winston.createLogger({
       json: false,
       zippedArchive: true,
     }),
+    new winston.transports.Console({
+      format: winston.format.combine(winston.format.splat(), winston.format.colorize()),
+    }),
   ],
 });
-
-logger.add(
-  new winston.transports.Console({
-    format: winston.format.combine(winston.format.splat(), winston.format.colorize()),
-  }),
-);
 
 const stream = {
   write: (message: string) => {

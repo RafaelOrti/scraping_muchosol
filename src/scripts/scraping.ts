@@ -3,18 +3,11 @@ import moment from 'moment';
 import jsdom from 'jsdom';
 import eventModel from '../models/event';
 import { logger } from '../utils/logger';
-
-interface NewsData {
-  heading: string;
-  subHeading: string;
-  link: string;
-}
+import { NewsData } from '../interfaces/event';
 
 class Web {
   private newsData: NewsData[] = [];
-
   private provider: string = '';
-
   private event: eventModel;
 
   constructor(provider: string) {
