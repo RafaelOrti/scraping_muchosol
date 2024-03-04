@@ -1,6 +1,6 @@
 import mongoose, { set } from 'mongoose';
 import { NODE_ENV, DB_HOST, DB_PORT, DB_DATABASE } from '../config';
-import { logger } from '../utils/logger'; // Assuming you have a logger module
+import { logger } from '../utils/logger';
 
 export const dbConnection = async () => {
   const dbConfig = {

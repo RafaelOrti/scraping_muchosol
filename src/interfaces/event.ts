@@ -5,3 +5,9 @@ export interface Event {
   date: string;
   provider: string;
 }
+
+export interface NewsData {
+  heading: string;
+  subHeading: string;
+  link: string;
+}
